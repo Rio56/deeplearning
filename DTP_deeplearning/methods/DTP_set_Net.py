@@ -27,6 +27,8 @@ from keras.optimizers import SGD
 from keras.layers.normalization import BatchNormalization
 from keras import regularizers
 from tensorflow.python.util import nest
+#from theano.util import nest
+
 from keras.optimizers import Nadam, Adam, SGD
 import copy
 import matplotlib
