@@ -258,7 +258,7 @@ if __name__ == "__main__":
 	#ten_fold_file_path_1 = "C:\\Users\\_Rio56\\Desktop\\drug_target_gpu_test\\zyh_DTP\\DTP_data\\ten_fold_data\\1\\"
 	set_GPU(7)
 
-	ten_fold_file_path = "D:\\GitHub\\DTP_deeplearning\\DTP_deeplearning\\DTP_data\\ten_fold_data_0.3\\"
+	ten_fold_file_path = "D:\\GitHub\\DTP_deeplearning\\DTP_deeplearning\\DTP_data\\ten_fold_data\\"
 	
 
 	#ten_fold_file_path = "D:\\GitHub\\DTP_deeplearning\\DTP_deeplearing\\DTP_dat\\ten_fold_data\\"
