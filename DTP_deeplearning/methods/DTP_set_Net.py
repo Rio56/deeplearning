@@ -127,7 +127,7 @@ def zyh_CNN(trainX, trainY,valX=None, valY=None, compiletimes = 0, forkinas=Fals
 	if compiletimes == 0:
 		input = Input(shape=(input_row, input_col))
 		filter1 = 64
-		filtersize1 = 4
+		filtersize1 = 2
 		dropout1 = 0.25
 		L1CNN = 0
 		nb_classes = 2
@@ -136,11 +136,11 @@ def zyh_CNN(trainX, trainY,valX=None, valY=None, compiletimes = 0, forkinas=Fals
 		nadam = Nadam(lr=0.00001)
 		optimization = nadam
 		
-		dense_size1 = 256
-		dense_size2 = 128
+		dense_size1 = 128
+		dense_size2 = 64
 		dense_size3 = 8
 		dropout_dense1 = 0.298224
-		dropout_dense2 = 0.25
+		dropout_dense2 = 0
 		dropout_dense3 = 0
 		input = Input(shape=(input_row, input_col))
 		x = conv.Conv1D(filter1, filtersize1, init='glorot_normal', W_regularizer=regularizers.l2(L1CNN),

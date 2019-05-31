@@ -24,8 +24,13 @@ def get_flag(sequence_dic, lable_dic,training_data_id , windows = 31,empty_aa = 
 	# windows means all length, hfindows
 	hf_windows = int(windows / 2)  # hf_windows : half windows
 	
+	#for protein_id in training_data_id:
+	#	pass
+	
+	
 	# id in the id list is useful, others are useless
 	for protein_id in training_data_id:
+		protein_id = protein_id.rstrip()
 		seq = sequence_dic[protein_id]  # get the right seq
 		if (protein_id in lable_dic):
 			seq_lable = lable_dic[protein_id]

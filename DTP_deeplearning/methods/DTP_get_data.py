@@ -20,7 +20,7 @@ def get_data():
 	print("!")
 	
 	# different computer's path
-	file_path = "D:\\drugtaget_prediction\\zyh_data\\"
+	file_path = ".\\DTP_data\\"
 	# file_path = "/home/zhaiyh/drug_target_gpu_test/zyh_data/"
 	# file_path = "C:\\Users\\_Rio56\\Desktop\\drug_target_gpu_test\\zyh_data\\DTP_data\\"
 	
@@ -126,7 +126,7 @@ def change_data_into_ten_fold(train_pos,train_neg):
 def save_Bootstrapping_data(data,tenfold_list,tenfload,times,srate = 0.8,tag = "tag"):
 	#path = 'C:\\Users\\_Rio56\\Desktop\\drug_target_gpu_test\\zyh_DTP\\DTP_data\\ten_fold_data\\'
 
-	path = 'D:\\drugtaget_prediction\\ten_fold_data\\'
+	path = '.\\DTP_data\\ten_fold_data_0.3\\'
 
 	path = path + str(tenfload) + '\\'
 

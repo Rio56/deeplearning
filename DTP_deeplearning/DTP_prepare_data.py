@@ -20,7 +20,7 @@ def main():
 	#
 	pos_sample, neg_sample, true_neg_sample, data_with_flag = get_flag(sequence_dic, lable_dic, training_data_id)
 	#
-	pos_data, neg_data, = prepare_data(data_with_flag)
+	pos_data, neg_data = prepare_data(data_with_flag)
 	#
 	#start_training(train_pos_data, train_neg_data, val_pos_data, val_neg_data)
 	pass
