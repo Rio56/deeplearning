@@ -28,8 +28,42 @@ def main():
 	pickle.dump(val, f_val)
 	pickle.dump(test, f_test)
 
+	need_redundancy = test + val
+	print(need_redundancy)
+
+	find_sequence(need_redundancy, sequence_dic)
 
 
+def write_in_fasta_form(name, sequeence, filename):
+	f = open(filename, "a+")
+	f.write(">" + str(name) + "\n")
+	f.write(str(sequeence) + "\n")
+
+
+
+def find_sequence(list,sequence_dic):
+
+	new_list = []
+	for item in list:
+		new_list.append(item.rstrip())
+
+
+	#print(sequence_dic)
+	#print(type(sequence_dic))
+	#print(sequence_dic.keys())
+	#protein_id = protein_id.rstrip()
+	keys = sequence_dic.keys()
+	values = sequence_dic.values()
+	#print(len(keys))
+	#print(len(values))
+
+	for item in sequence_dic:
+		write_in_fasta_form(item, sequence_dic[item], "need_redundancy_" + str(len(sequence_dic)) + ".fasta")
+
+		if item in new_list:
+			#print(sequence_dic[item])
+			sequeence = sequence_dic[item]
+			write_in_fasta_form(item, sequeence, "none_redundancy_" + str(len(new_list)) + ".fasta")
 
 def select_train_val_test(data_id):
 	data_number = len(data_id)
@@ -58,17 +92,12 @@ def select_train_val_test(data_id):
 		else:
 			#print(item)
 			train.append(data_id[item])
-
 		counter = counter + 1
-
 	print(test)
 	print(val)
 	print(train)
 
-
 	return train,val,test
-
-
 
 if __name__ == "__main__":
 	starttime = datetime.datetime.now()

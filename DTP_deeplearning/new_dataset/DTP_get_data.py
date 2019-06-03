@@ -56,7 +56,7 @@ def get_data(data_number):
 	
 	################################ return data ################################
 	print("1")
-	#print(sequence_dic)
+	print(sequence_dic)
 	print("2")
 	#print(lable_dic)
 	print("3")

@@ -1,0 +1,37 @@
+================================================================
+Program: CD-HIT, V4.7 (+OpenMP), Sep 06 2018, 09:36:42
+Command: /data5/data/NGS-ann-project/apps/cd-hit/cd-hit-2d -i
+         1559561849.fas.db1 -i2 1559561849.fas.db2 -o
+         1559561849.fas.db2novel -c 0.4 -n 2 -G 1 -g 1 -b 20 -l
+         10 -s 0.0 -aL 0.0 -aS 0.0 -s2 1.0 -S2 0 -T 4 -M 32000
+
+Started: Mon Jun  3 04:37:38 2019
+================================================================
+                            Output                              
+----------------------------------------------------------------
+total seq in db1: 0
+total seq in db2: 0
+longest and shortest : 0 and 18446744073709551615
+Total letters: 0
+Sequences have been sorted
+longest and shortest : 0 and 18446744073709551615
+Total letters: 0
+
+Approximated minimal memory consumption:
+Sequence        : 0M
+Buffer          : 4 X 10M = 41M
+Table           : 2 X 0M = 0M
+Miscellaneous   : 0M
+Total           : 41M
+
+Table limit with the given memory limit:
+Max number of representatives: 4000000
+Max number of word counting entries: 3994753580
+
+
+0 compared	0 clustered
+writing non-redundant sequences from db2
+writing clustering information
+program completed !
+
+Total CPU time 0.05
