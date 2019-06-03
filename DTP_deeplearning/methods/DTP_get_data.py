@@ -11,21 +11,17 @@ import pandas as pd
 #from sklearn import cross_validation
 #from sklearn.model_selection import cross_val_score
 from sklearn.model_selection import KFold
+import random
 
 import pickle
 
 
-def get_data(data_number):
+def get_data(data_number,file_path):
 	"""
 	:argument
 	:return:
 	"""
-	print("!")
-	
-	# different computer's path
-	# file_path = ".\\DTP_data\\"
-	file_path = "/home/zhaiyh/drug_target_gpu_test/zyh_data/"
-	#file_path = "C:\\Users\\_Rio56\\Desktop\\drug_target_gpu_test\\zyh_data\\DTP_data\\"
+
 	
 	################################ set the file name ################################
 	sequence_dic = file_path + "seqdicts.pickle"
@@ -34,12 +30,8 @@ def get_data(data_number):
 	lable_dic = file_path + "labeldicts.pickle"
 	# '1MQD_A':[0,0,0,1,O,O,O,O,0....]
 
-	if data_number == "0.3":
-		training_data = file_path + "seq_3cutoff.pickle"
-	elif data_number == "0.9":
-		training_data = file_path + "seq_cut_0.9.pickle"
-	elif data_number == "1":
-		training_data = file_path + "seq_from_pdb_all_no_3232.pickle"
+	training_data = file_path + "train.pickle"
+	val_data = file_path + "val.pickle"
 
 	#['5WC5_B', '2PX8_B', '4PXK_A'....]
 	################################ open file and load pickle ################################
@@ -51,6 +43,9 @@ def get_data(data_number):
 	
 	training_data_id= open(training_data, 'rb')
 	training_data_id = pickle.load(training_data_id)
+
+	val_data_id = open(val_data, 'rb')
+	val_data_id = pickle.load(val_data_id)
 	
 	################################ return data ################################
 	print("1")
@@ -61,10 +56,10 @@ def get_data(data_number):
 	#print(training_data_id)
 	print(len(training_data_id))
 	print("4")
-	return sequence_dic, lable_dic, training_data_id, data_number
+	return sequence_dic, lable_dic, training_data_id, val_data_id, data_number
 
 
-def prepare_data(data_with_flag, data_number,windows):
+def prepare_data(data_with_flag, data_number,windows,data_class):
 	"""
 	:argument
 	:return:
@@ -75,22 +70,44 @@ def prepare_data(data_with_flag, data_number,windows):
 	# print(trainfile)
 	# get: train_pos  train_neg
 	print(np.where(trainX[:, 0] == 1))
-	train_pos = trainX[np.where(trainX[:, 0] == 1)]
-	train_neg = trainX[np.where(trainX[:, 0] != 1)]
-	train_pos = pd.DataFrame(train_pos)
-	train_neg = pd.DataFrame(train_neg)
-	
-	change_data_into_ten_fold(train_pos,train_neg,data_number,windows)
-	
-	output_train_pos = open('train_pos.pkl', 'wb')
-	pickle.dump(train_pos, output_train_pos)
-	output_train_pos.close()
-	
-	output_train_neg = open('train_neg.pkl', 'wb')
-	pickle.dump(train_neg, output_train_neg)
-	output_train_neg.close()	
+	pos = trainX[np.where(trainX[:, 0] == 1)]
+	neg = trainX[np.where(trainX[:, 0] != 1)]
+	pos = pd.DataFrame(pos)
+	neg = pd.DataFrame(neg)
 
-	return train_pos,train_neg
+	x_th_file =1
+
+	upset_data_into_ten_file(pos,neg,x_th_file,data_number,windows,data_class)
+
+	
+	#change_data_into_ten_fold(pos,neg,data_number,windows)
+	
+	output_pos = open(data_class + '_pos.pkl', 'wb')
+	pickle.dump(pos, output_pos)
+	output_pos.close()
+	
+	output_neg = open(data_class + '_neg.pkl', 'wb')
+	pickle.dump(neg, output_neg)
+	output_neg.close()
+
+	return pos,neg
+
+def upset_data_into_ten_file(pos,neg,x_th_file,data_number,windows,data_class):
+	print(data_class)
+
+
+	list_pos = [i for i in range(len(pos))]
+	list_neg = [i for i in range(len(neg))]
+
+	random.shuffle(list_pos)
+	random.shuffle(list_neg)
+
+	times = int(len(neg) / len(pos))
+
+	save_Bootstrapping_data(pos, list_pos, x_th_file, 1, data_number, windows, 0.8, data_class + "_pos_")
+	save_Bootstrapping_data(neg, list_neg, x_th_file, times, data_number, windows, 0.8, data_class + "_neg_")
+
+	pass
 
 def change_data_into_ten_fold(train_pos,train_neg, data_number,windows):
 	#Residues = train_pos
@@ -109,7 +126,7 @@ def change_data_into_ten_fold(train_pos,train_neg, data_number,windows):
 	i = 1
 	times = int(len(train_neg)/len(train_pos))
 	for train_index,test_index in kf_pos.split(train_pos):
-		#print(train_index,test_index)
+		print(train_index,test_index)
 		if i <= 10:
 			x = train_index
 			y = test_index
@@ -140,9 +157,6 @@ def save_Bootstrapping_data(data,tenfold_list,tenfload,times, data_number,window
 
 	#path = './DTP_data/ten_fold_data_0.3_lenth5/'
 	path = './DTP_data/ten_fold_data_' + data_number + '_lenth' + str(windows) + '/'
-
-
-
 	path = path + str(tenfload) + '/'
 
 	newdata =pd.DataFrame(columns = data.columns.values.tolist())

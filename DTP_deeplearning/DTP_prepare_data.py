@@ -15,16 +15,22 @@ import datetime
 def main():
 	#
 	data_number = "1"
-	"1,   0.3,   0.9"
-	windows = 5
+	"1,   2,   3"
+	windows = 31
 	"5   31   49"
+	#file_path = ".\\DTP_data_non_redundancy\\"
+	file_path = "./DTP_data_non_redundancy/"
 
 	#
-	sequence_dic, lable_dic, training_data_id, data_number= get_data(data_number)
+	sequence_dic, lable_dic, train_data_id, val_data_id,data_number= get_data(data_number,file_path)
 	#
-	pos_sample, neg_sample, true_neg_sample, data_with_flag = get_flag(sequence_dic, lable_dic, training_data_id, windows)
+
+	pos_sample, neg_sample, true_neg_sample, val_data_with_flag = get_flag(sequence_dic, lable_dic, val_data_id, windows)
+	pos_sample, neg_sample, true_neg_sample, train_data_with_flag = get_flag(sequence_dic, lable_dic, train_data_id,
+																			 windows)
 	#
-	pos_data, neg_data = prepare_data(data_with_flag, data_number,windows)
+	pos_data, neg_data = prepare_data(train_data_with_flag, data_number, windows, "val")
+	pos_data, neg_data = prepare_data(val_data_with_flag, data_number, windows, "train")
 	#
 	#start_training(train_pos_data, train_neg_data, val_pos_data, val_neg_data)
 	pass

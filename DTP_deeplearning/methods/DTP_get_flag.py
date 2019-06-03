@@ -75,9 +75,9 @@ def get_flag(sequence_dic, lable_dic,training_data_id , windows = 5,empty_aa = '
 				final_seq_list = [0] + [AA for AA in final_seq]
 				neg_sample_number = neg_sample_number + 1
 				#id_list.append(protein_id)
-				#seq_list_2d.append(final_seq_list)
+				seq_list_2d.append(final_seq_list)
 
-				if 1 in seq_lable[pos - hf_windows:pos + hf_windows]:
+				"""if 1 in seq_lable[pos - hf_windows:pos + hf_windows]:
 					pass
 				elif "_" in final_seq:
 					pass
@@ -85,7 +85,8 @@ def get_flag(sequence_dic, lable_dic,training_data_id , windows = 5,empty_aa = '
 				else:
 					id_list.append(protein_id)				
 					seq_list_2d.append(final_seq_list)
-				
+				"""
+
 				pass
 			pass
 		pass
