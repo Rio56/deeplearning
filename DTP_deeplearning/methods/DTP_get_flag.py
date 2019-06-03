@@ -8,7 +8,7 @@
 """
 import pandas as pd
 
-def get_flag(sequence_dic, lable_dic,training_data_id , windows = 49,empty_aa = '_' ):
+def get_flag(sequence_dic, lable_dic,training_data_id , windows = 5,empty_aa = '_' ):
 	"""
 	:argument
 	:return:

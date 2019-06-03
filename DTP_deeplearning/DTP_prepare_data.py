@@ -14,13 +14,17 @@ import datetime
 
 def main():
 	#
-	
+	data_number = "1"
+	"1,   0.3,   0.9"
+	windows = 5
+	"5   31   49"
+
 	#
-	sequence_dic, lable_dic, training_data_id = get_data()
+	sequence_dic, lable_dic, training_data_id, data_number= get_data(data_number)
 	#
-	pos_sample, neg_sample, true_neg_sample, data_with_flag = get_flag(sequence_dic, lable_dic, training_data_id)
+	pos_sample, neg_sample, true_neg_sample, data_with_flag = get_flag(sequence_dic, lable_dic, training_data_id, windows)
 	#
-	pos_data, neg_data = prepare_data(data_with_flag)
+	pos_data, neg_data = prepare_data(data_with_flag, data_number,windows)
 	#
 	#start_training(train_pos_data, train_neg_data, val_pos_data, val_neg_data)
 	pass
