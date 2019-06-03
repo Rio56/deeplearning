@@ -66,7 +66,7 @@ def evaluate_model(modelname, testX, testY, i, type, fildername):
 	cnn = modelname
 	# cnn = models.load_model('%d-merge.h5' % i, {'isru': isru, 'pearson_r': pearson_r})
 	#  ############### test ##########################
-	pre_score = cnn.evaluate(testX, testY, batch_size=2048, verbose=0)
+	pre_score = cnn.evaluate(testX, testY, batch_size=4096, verbose=0)
 	print(pre_score)
 
 	fileX = open('./'+fildername+'/pre_score%d.pickle' % i, 'wb')
@@ -144,7 +144,6 @@ def performance(labelArr, predictArr):
 	return SN, SP
 
 def using_one_of_ten_fold_crossing(one_of_ten_fold_file_path,x_fold_type,fildername):
-	
 	path = one_of_ten_fold_file_path
 	dirs = os.listdir(path)
 	train_neg = []
@@ -162,65 +161,98 @@ def using_one_of_ten_fold_crossing(one_of_ten_fold_file_path,x_fold_type,fildern
 			val_neg.append(dir)
 			pass
 		if "pos" in dir and "test" in dir:
-			val_pos.append(dir)		
-	#print(val_pos)
-	#print(val_neg)
-	for nclass_times in range(len(train_neg)):
-		#print(nclass_times)
-		"""
-		if nclass_times >len(train_neg)*2:
-			nclass_times = nclass_times - len(train_neg)*2
-			print("!!!")
-			print(nclass_times)
-		elif nclass_times >len(train_neg):
-			nclass_times = nclass_times - len(train_neg)
-			print("!")
-			print(nclass_times)"""
-			
-		
-			
-		print(nclass_times)	
-		train_neg_data = np.load(path + train_neg[nclass_times])
-		train_pos_data = np.load(path + train_pos[0])
-		
-		val_neg_data = np.load(path + val_neg[nclass_times])
-		val_pos_data = np.load(path + val_pos[0])
-		
-		train_neg_data = pd.DataFrame(train_neg_data)
-		train_pos_data = pd.DataFrame(train_pos_data)
-		val_neg_data = pd.DataFrame(val_neg_data)
-		val_pos_data = pd.DataFrame(val_pos_data)
-		
+			val_pos.append(dir)	
 	
-		codingMode = 0
-		
-		train_all = pd.concat([train_pos_data, train_neg_data])
-		trainX1, trainY1 = convertRawToXY(train_all.as_matrix(), codingMode=codingMode)		
-		
-		val_all = pd.concat([val_pos_data, val_neg_data])
-		#print(val_all)
-		valX1, valY1 = convertRawToXY(val_all.as_matrix(), codingMode=codingMode)
-		#print(valX1)
-		#print(valY1)
-		
-		if nclass_times == 0:
-			pass
-			models,accuracys = zyh_CNN(trainX1, trainY1, valX1, valY1, compiletimes=nclass_times,transferlayer=1,forkinas=1,fildername = fildername)
-		else:
-			pass
-			models,accuracys = zyh_CNN(trainX1, trainY1, valX1, valY1, compiletimes=nclass_times, transferlayer=1,forkinas=1,compilemodels=models,fildername = fildername)
-			pre_score, pre, rec, SN, SP, f1, mcc, roc_auc = evaluate_model(models, valX1,valY1, nclass_times, "6",fildername)	
-			accuracys_final['train_loss1'].append(accuracys['train_loss1'])
-			accuracys_final['train_acc1'].append(accuracys['train_acc1'])
-			accuracys_final['val_loss2'].append(accuracys['val_loss2'])
-			accuracys_final['val_acc2'].append(accuracys['val_acc2'])
-			print_final_acc_loss(accuracys_final, nclass_times, x_fold_type,fildername)	
-			print("pre_score, pre, rec, SN, SP, f1, mcc, roc_auc")
-			print(pre_score, pre, rec, SN, SP, f1, mcc, roc_auc)
-			
-		
+	train_neg_data = np.load(path + train_neg[0])
+	train_pos_data = np.load(path + train_pos[0])
+
+	val_neg_data = np.load(path + val_neg[0])
+	val_pos_data = np.load(path + val_pos[0])
+	"""
+	print(len(train_neg_data))
+	print(len(train_pos_data))
+	print(len(val_neg_data))
+	print(len(val_pos_data))"""
+
+	train_neg_data = pd.DataFrame(train_neg_data)
+	train_pos_data = pd.DataFrame(train_pos_data)
+	val_neg_data = pd.DataFrame(val_neg_data)
+	val_pos_data = pd.DataFrame(val_pos_data)
+
+
+	codingMode = 0
+
+	train_all = pd.concat([train_pos_data, train_neg_data])
+	trainX1, trainY1 = convertRawToXY(train_all.as_matrix(), codingMode=codingMode)		
+
+	val_all = pd.concat([val_pos_data, val_neg_data])
+	#print(val_all)
+	valX1, valY1 = convertRawToXY(val_all.as_matrix(), codingMode=codingMode)
+	#print(valX1)
+	#print(valY1)
 	
-	pass
+	models,accuracys = zyh_CNN(trainX1, trainY1, valX1, valY1, compiletimes=0,transferlayer=1,forkinas=1,fildername = fildername)
+	
+	compile_flag = 0
+	
+	while compile_flag < 300:
+		for nclass_times in range(len(train_neg)):
+			models,accuracys =run_model(nclass_times,compile_flag,one_of_ten_fold_file_path,fildername,models,train_neg,train_pos,val_neg,val_pos)
+	
+		pre_score, pre, rec, SN, SP, f1, mcc, roc_auc = evaluate_model(models, valX1,valY1, nclass_times, x_fold_type,fildername)	
+		accuracys_final['train_loss1'].append(accuracys['train_loss1'])
+		accuracys_final['train_acc1'].append(accuracys['train_acc1'])
+		accuracys_final['val_loss2'].append(accuracys['val_loss2'])
+		accuracys_final['val_acc2'].append(accuracys['val_acc2'])
+		print_final_acc_loss(accuracys_final, nclass_times, x_fold_type,fildername)	
+		print("pre_score, pre, rec, SN, SP, f1, mcc, roc_auc")
+		print(pre_score, pre, rec, SN, SP, f1, mcc, roc_auc)		
+		compile_flag = compile_flag + 1		
+		pass
+	
+	
+	
+
+
+
+def run_model(nclass_times,compile_flag,one_of_ten_fold_file_path,fildername,models,train_neg,train_pos,val_neg,val_pos):
+	path = one_of_ten_fold_file_path
+	
+	train_neg_data = np.load(path + train_neg[nclass_times])
+	train_pos_data = np.load(path + train_pos[0])
+
+	val_neg_data = np.load(path + val_neg[nclass_times])
+	val_pos_data = np.load(path + val_pos[0])
+	"""
+	print(len(train_neg_data))
+	print(len(train_pos_data))
+	print(len(val_neg_data))
+	print(len(val_pos_data))"""
+
+	train_neg_data = pd.DataFrame(train_neg_data)
+	train_pos_data = pd.DataFrame(train_pos_data)
+	val_neg_data = pd.DataFrame(val_neg_data)
+	val_pos_data = pd.DataFrame(val_pos_data)
+
+
+	codingMode = 0
+
+	train_all = pd.concat([train_pos_data, train_neg_data])
+	trainX1, trainY1 = convertRawToXY(train_all.as_matrix(), codingMode=codingMode)		
+
+	val_all = pd.concat([val_pos_data, val_neg_data])
+	#print(val_all)
+	valX1, valY1 = convertRawToXY(val_all.as_matrix(), codingMode=codingMode)
+	#print(valX1)
+	#print(valY1)
+
+	models,accuracys = zyh_CNN(trainX1, trainY1, valX1, valY1, compiletimes=compile_flag, transferlayer=1,forkinas=1,compilemodels=models,fildername = fildername)
+	
+	return models,accuracys 
+
+
+	
+
 
 def print_final_acc_loss(accuracys_final, i, type,fildername):
 	#  ######### Print Loss Map ##########
@@ -244,28 +276,16 @@ def using_ten_fold_crossing(ten_fold_file_path):
 	dirs = os.listdir(path)	
 	compiletimes = 0
 	for dir in dirs:
-	    models = using_one_of_ten_fold_crossing(ten_fold_file_path + str(dir) + "/" , str(dir)+ "_","result_7")
+	    models = using_one_of_ten_fold_crossing(ten_fold_file_path + str(dir) + "/" , str(dir)+ "_","result")
 	    #this place will save the model
 	pass
 
 
 if __name__ == "__main__":
-	#path_father = os.path.abspath('.')
-	#print(path_father)
-	#ten_fold_file_path_1 = path_father + "DrugTargetPrediction_data\\ten_fold_data\\1"
-	#C:\Users\_Rio56\Desktop\drug_target_gpu_test\zyh_DrugTargetPrediction\DrugTargetPrediction_data\ten_fold_data\1
-	#ten_fold_file_path_1 = "C:\Users\_Rio56\Desktop\drug_target_gpu_test\zyh_DrugTargetPrediction\DrugTargetPrediction_data\ten_fold_data\1
-	#ten_fold_file_path_1 = "C:\\Users\\_Rio56\\Desktop\\drug_target_gpu_test\\zyh_DTP\\DTP_data\\ten_fold_data\\1\\"
+	
 	set_GPU(7)
 
-	ten_fold_file_path = "D:\\GitHub\\DTP_deeplearning\\DTP_deeplearning\\DTP_data\\ten_fold_data\\"
-
-
-	#ten_fold_file_path = "D:\\GitHub\\DTP_deeplearning\\DTP_deeplearing\\DTP_dat\\ten_fold_data\\"
 	ten_fold_file_path = ".\\DTP_data\\ten_fold_data\\"
-	#ten_fold_file_path = "E:\\project\\GitHub\\deeplearning\\DTP_deeplearning\\DTP_data\\ten_fold_data\\"
-
-	#ten_fold_file_path = "C:\\Users\\zhaiy\\Desktop\\20190310整理手头数据\\DTP_data\\ten_fold_data\\"
-	#ten_fold_file_path = "C:\\Users\\_Rio56\\Desktop\\drug_target_gpu_test\\zyh_DTP\\DTP_data\\ten_fold_data\\"
-	#ten_fold_file_path = "/home/zhaiyh/drug_target_gpu_test/zyh_DTP/DTP_data/ten_fold_data/"
+	#ten_fold_file_path = "./DTP_data/ten_fold_data/"
+	
 	using_ten_fold_crossing(ten_fold_file_path)

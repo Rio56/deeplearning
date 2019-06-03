@@ -104,7 +104,7 @@ def print_loss(fitHistory, i, type, fildername):
 
 	return loss1, acc1, loss2, acc2
 
-def zyh_CNN(trainX, trainY,valX=None, valY=None, compiletimes = 0, forkinas=False,transferlayer=1,compilemodels=None,earlystop=None,nb_epoch=750,batch_size = 4096,fildername = None ):
+def zyh_CNN(trainX, trainY,valX=None, valY=None, compiletimes = 0, forkinas=False,transferlayer=1,compilemodels=None,earlystop=None,nb_epoch=5,batch_size = 8191,fildername = None ):
 	"""
 	:argument
 	:return:
