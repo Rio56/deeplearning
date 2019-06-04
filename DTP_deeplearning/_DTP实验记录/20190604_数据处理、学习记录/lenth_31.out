@@ -1,0 +1,150 @@
+1
+2
+3
+2558
+4
+(array([    17,     22,     23, ..., 873365, 873475, 873484]),)
+train
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_train_pos_0.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_train_neg_0.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_train_neg_1.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_train_neg_2.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_train_neg_3.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_train_neg_4.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_train_neg_5.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_train_neg_6.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_train_neg_7.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_train_neg_8.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_train_neg_9.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_train_neg_10.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_train_neg_11.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_train_neg_12.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_train_neg_13.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_train_neg_14.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_train_neg_15.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_train_neg_16.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_train_neg_17.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_train_neg_18.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_train_neg_19.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_train_neg_20.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_train_neg_21.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_train_neg_22.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_train_neg_23.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_train_neg_24.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_train_neg_25.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_train_neg_26.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_train_neg_27.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_train_neg_28.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_train_neg_29.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_train_neg_30.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_train_neg_31.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_train_neg_32.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_train_neg_33.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_train_neg_34.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_train_neg_35.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_train_neg_36.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_train_neg_37.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_train_neg_38.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_train_neg_39.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_train_neg_40.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_train_neg_41.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_train_neg_42.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_train_neg_43.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_train_neg_44.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_train_neg_45.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_train_neg_46.npy
+done
+(array([ 1095,  1242,  1245,  1416,  1468,  1482,  1530,  1531,  1532,
+        1550,  1551,  1552,  1803,  1805,  1806,  1827,  1830,  1849,
+        1959,  2041,  2042,  2043,  2044,  2376,  2393,  2452,  3204,
+        3205,  3227,  3404,  3405,  3406,  3407,  3408,  3409,  3411,
+        3412,  3419,  3421,  3422,  3423,  3425,  3528,  3572,  3573,
+        3622,  3623,  3653,  3658,  3659,  3666,  3668,  3673,  3674,
+        3697,  3698,  3699,  3739,  3741,  3845,  3846,  3847,  3856,
+        3857,  3860,  3866,  3867,  3905,  3908,  3909,  3912,  4182,
+        4183,  4202,  4341,  4342,  4358,  4360,  4362,  4377,  4407,
+        4885,  4887,  4906,  4910,  4916,  4918,  4925,  4930,  4933,
+        4939,  4942,  4943,  4946,  4964,  4968,  4972,  4973,  4974,
+        4975,  4978,  4980,  4984,  4991,  4992,  4997,  4998,  5002,
+        5003,  5006,  5007,  5014,  5030,  5032,  5035,  5235,  5237,
+        5324,  5325,  6191,  6194,  6209,  6212,  6654,  6908,  6936,
+        6938,  7114,  7189,  7657,  7658,  7678,  7679,  7681,  7698,
+        7700,  7724,  8098,  8245,  8247,  8253,  8255,  8391,  8395,
+        8417,  8420,  8549,  8550,  8551,  8554,  8596,  8607,  8609,
+        8610,  8622,  8623,  8624,  8625,  8627,  8676,  8677,  8753,
+        8755,  8822,  8873,  8882,  8891,  8949,  8975,  9490,  9571,
+        9573,  9682,  9859,  9861,  9862, 10190, 10204, 10205, 10208,
+       10301, 10302, 10303, 10306, 10307, 10315, 10356, 10358, 10529,
+       10530, 10837, 10838, 10841, 11550, 11783, 11784, 11787, 11828,
+       11831, 11842, 11843, 11857, 11864, 11866, 11867, 11868, 11882,
+       11883, 11953, 11955, 11956, 11957, 11959, 12017, 12028, 12031,
+       12033, 12395, 12481, 12482, 12483, 12484, 12485, 12611, 12620,
+       12621, 12624, 12628, 12666, 12667, 12670, 12680, 12682, 12684,
+       12685, 12689, 12699, 12700, 12703, 12720, 12736, 12743, 12744,
+       12745, 12746, 12756, 12757, 12788, 12789, 12792, 12796, 12858,
+       12894, 12906, 12919, 12920, 12930, 12931, 12936, 12938, 12967,
+       12998, 12999, 13016, 13025, 13029, 13030, 13032, 13041, 13045,
+       13046, 13054, 13071, 13114, 13209, 13216, 13217, 13504, 13516,
+       13518, 13520, 13538, 14143, 14307, 14310, 14311, 14318, 14319,
+       14713, 14803, 14804, 14805, 14869, 14873, 14896, 14975, 14991,
+       14992, 15037, 15405, 15523, 15526, 15794, 15965, 15986, 16148,
+       16171, 16288, 16290, 16381, 16385, 16460, 16467, 16468, 16471,
+       16560, 16886, 16887, 16888, 16896, 16913, 17042, 17044, 17056,
+       17151, 17184, 17224]),)
+val
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_val_pos_0.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_val_neg_0.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_val_neg_1.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_val_neg_2.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_val_neg_3.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_val_neg_4.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_val_neg_5.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_val_neg_6.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_val_neg_7.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_val_neg_8.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_val_neg_9.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_val_neg_10.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_val_neg_11.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_val_neg_12.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_val_neg_13.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_val_neg_14.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_val_neg_15.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_val_neg_16.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_val_neg_17.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_val_neg_18.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_val_neg_19.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_val_neg_20.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_val_neg_21.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_val_neg_22.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_val_neg_23.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_val_neg_24.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_val_neg_25.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_val_neg_26.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_val_neg_27.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_val_neg_28.npy/home/zhaiyh/drug_target_gpu_test/zyh_DTP/DTP_deeplearning/methods/DTP_get_data.py:68: FutureWarning: Method .as_matrix will be removed in a future version. Use .values instead.
+  data_with_flag = data_with_flag.as_matrix()
+
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_val_neg_29.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_val_neg_30.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_val_neg_31.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_val_neg_32.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_val_neg_33.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_val_neg_34.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_val_neg_35.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_val_neg_36.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_val_neg_37.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_val_neg_38.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_val_neg_39.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_val_neg_40.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_val_neg_41.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_val_neg_42.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_val_neg_43.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_val_neg_44.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_val_neg_45.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_val_neg_46.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_val_neg_47.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_val_neg_48.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_val_neg_49.npy
+./DTP_data_no_rdc/10times_train_1_lenth21/1/ten_times_1_val_neg_50.npy
+done
+totaltime = 4:05:22.208835
