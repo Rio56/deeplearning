@@ -40,8 +40,10 @@ def convertSampleToProbMatr(sampleSeq3DArr): #changed add one column for '1'
     letterDict["Y"] = 19
     letterDict["-"] =20 ##add -
     AACategoryLen = 21 ##add -
+
     
     probMatr = np.zeros((len(sampleSeq3DArr), 1, len(sampleSeq3DArr[0]), AACategoryLen))
+
     
     
     sampleNo = 0

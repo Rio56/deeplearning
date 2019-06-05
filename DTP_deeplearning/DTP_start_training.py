@@ -13,7 +13,7 @@ from methods.DTP_prepare_data import change_data_into_ten_fold"""
 #from "D:\\GitHub\\DTP_deeplearning\\DTP_deeplearning\\".methods.DTP_set_Net import zyh_CNN
 from methods.DTP_set_Net import zyh_CNN
 from methods.DTP_DProcess import convertRawToXY
-from methods.DTP_get_data import change_data_into_ten_fold
+#from methods.DTP_get_data import change_data_into_ten_fold
 from methods.DTP_set_GPU import set_GPU
 import os
 
@@ -151,18 +151,22 @@ def using_one_of_ten_fold_crossing(one_of_ten_fold_file_path,x_fold_type,fildern
 	val_neg = []
 	val_pos = []	
 	accuracys_final = {'train_loss1':[], 'train_acc1':[], 'val_loss2':[], 'val_acc2':[]}
+	print(dirs)
 	for dir in dirs:
 		if "neg" in dir and "train" in dir :
 			train_neg.append(dir)
 			pass
 		if "pos" in dir and "train" in dir:
 			train_pos.append(dir)
-		if "neg" in dir and "test" in dir :
+		if "neg" in dir and "val" in dir :
 			val_neg.append(dir)
 			pass
-		if "pos" in dir and "test" in dir:
+		if "pos" in dir and "val" in dir:
 			val_pos.append(dir)	
-	
+	print(path + train_neg[0])
+	print(path + train_pos[0])
+	print(path + val_neg[0])
+	print(path + val_pos[0])
 	train_neg_data = np.load(path + train_neg[0])
 	train_pos_data = np.load(path + train_pos[0])
 
@@ -195,7 +199,7 @@ def using_one_of_ten_fold_crossing(one_of_ten_fold_file_path,x_fold_type,fildern
 	
 	compile_flag = 0
 	
-	while compile_flag < 300:
+	while compile_flag < 150:
 		for nclass_times in range(len(train_neg)):
 			models,accuracys =run_model(nclass_times,compile_flag,one_of_ten_fold_file_path,fildername,models,train_neg,train_pos,val_neg,val_pos)
 	
@@ -270,22 +274,29 @@ def print_final_acc_loss(accuracys_final, i, type,fildername):
 	plt.legend(['train_loss1','val_loss2', 'train_acc1','val_acc2'], loc='upper left')
 	plt.savefig('./'+fildername+'/' + str(type) + 'loss_acc%d.png' % i)
 	
-def using_ten_fold_crossing(ten_fold_file_path):
+def using_ten_fold_crossing(ten_fold_file_path,save_file):
 	path = ten_fold_file_path
 	print(path)
 	dirs = os.listdir(path)	
 	compiletimes = 0
+	models = using_one_of_ten_fold_crossing(ten_fold_file_path + str(1) + "/", str(1) + "_", save_file)
 	for dir in dirs:
-	    models = using_one_of_ten_fold_crossing(ten_fold_file_path + str(dir) + "/" , str(dir)+ "_","result")
+	    models = using_one_of_ten_fold_crossing(ten_fold_file_path + str(dir) + "/" , str(dir)+ "_",save_file)
 	    #this place will save the model
 	pass
 
 
 if __name__ == "__main__":
 	
-	set_GPU(7)
+	set_GPU(4)
 
-	ten_fold_file_path = ".\\DTP_data\\ten_fold_data\\"
+	#ten_fold_file_path = ".\\DTP_data\\ten_fold_data\\"
+	#ten_fold_file_path = "./DTP_data/ten_fold_data_0.3/"
+	ten_fold_file_path = "./DTP_data_no_rdc/10times_train_1_lenth31/"
 	#ten_fold_file_path = "./DTP_data/ten_fold_data/"
 	
-	using_ten_fold_crossing(ten_fold_file_path)
+	
+	
+	using_ten_fold_crossing(ten_fold_file_path,"result_4")
+	
+	
