@@ -75,11 +75,14 @@ def prepare_data(data_with_flag, data_number,windows,data_class):
 	pos = pd.DataFrame(pos)
 	neg = pd.DataFrame(neg)
 
-	x_th_file =1
+
+
+	"""for x in range(10):
+		x_th_file = x + 1
+		upset_data_into_ten_file(pos,neg,x_th_file,data_number,windows,data_class)"""
+	x_th_file = 1
 
 	upset_data_into_ten_file(pos,neg,x_th_file,data_number,windows,data_class)
-
-	
 	#change_data_into_ten_fold(pos,neg,data_number,windows)
 	
 	output_pos = open(data_class + '_pos.pkl', 'wb')
@@ -89,6 +92,7 @@ def prepare_data(data_with_flag, data_number,windows,data_class):
 	output_neg = open(data_class + '_neg.pkl', 'wb')
 	pickle.dump(neg, output_neg)
 	output_neg.close()
+	print("done")
 
 	return pos,neg
 
@@ -152,12 +156,10 @@ def change_data_into_ten_fold(train_pos,train_neg, data_number,windows):
 	print("neg_done~~~~~~~~~~~~~~")
 	
 
-def save_Bootstrapping_data(data,tenfold_list,tenfload,times, data_number,windows,srate = 0.8,tag = "tag"):
-	#path = 'C:\\Users\\_Rio56\\Desktop\\drug_target_gpu_test\\zyh_DTP\\DTP_data\\ten_fold_data\\'
+def save_Bootstrapping_data(data,tenfold_list,ten_times,times, data_number,windows,srate = 0.8,tag = "tag"):
 
-	#path = './DTP_data/ten_fold_data_0.3_lenth5/'
-	path = './DTP_data/ten_fold_data_' + data_number + '_lenth' + str(windows) + '/'
-	path = path + str(tenfload) + '/'
+	path = './DTP_data_no_rdc/10times_train_' + data_number + '_lenth' + str(windows) + '/'
+	path = path + str(ten_times) + '/'
 
 	newdata =pd.DataFrame(columns = data.columns.values.tolist())
 	counter = 1
@@ -173,7 +175,7 @@ def save_Bootstrapping_data(data,tenfold_list,tenfload,times, data_number,window
 		#print(counter)
 		counter = counter + 1
 		if counter == slength :
-			name = path + 'tenfold_' + str(tenfload) + '_' + tag +str(nclass_times) + '.npy'
+			name = path + 'ten_times_' + str(ten_times) + '_' + tag +str(nclass_times) + '.npy'
 			print(name)
 			#print(counter)
 			np.save(name,newdata)	

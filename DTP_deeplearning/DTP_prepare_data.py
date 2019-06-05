@@ -16,21 +16,26 @@ def main():
 	#
 	data_number = "1"
 	"1,   2,   3"
-	windows = 31
-	"5   31   49"
-	#file_path = ".\\DTP_data_non_redundancy\\"
-	file_path = "./DTP_data_non_redundancy/"
+	windows = 41
+	"5   21   31   41"
+	print("windows" + str(windows))
+	#file_path = ".\\DTP_data_no_rdc\\"
+	file_path = "./DTP_data_no_rdc/"
 
 	#
 	sequence_dic, lable_dic, train_data_id, val_data_id,data_number= get_data(data_number,file_path)
 	#
+	print("val_data_id")
+	print("train_data_id")
+	
 
 	pos_sample, neg_sample, true_neg_sample, val_data_with_flag = get_flag(sequence_dic, lable_dic, val_data_id, windows)
-	pos_sample, neg_sample, true_neg_sample, train_data_with_flag = get_flag(sequence_dic, lable_dic, train_data_id,
-																			 windows)
-	#
-	pos_data, neg_data = prepare_data(train_data_with_flag, data_number, windows, "val")
-	pos_data, neg_data = prepare_data(val_data_with_flag, data_number, windows, "train")
+	pos_data, neg_data = prepare_data(val_data_with_flag, data_number, windows, "val")
+	
+	
+	pos_sample, neg_sample, true_neg_sample, train_data_with_flag = get_flag(sequence_dic, lable_dic, train_data_id, windows)
+	pos_data, neg_data = prepare_data(train_data_with_flag, data_number, windows, "train")
+	top
 	#
 	#start_training(train_pos_data, train_neg_data, val_pos_data, val_neg_data)
 	pass
