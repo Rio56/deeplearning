@@ -238,6 +238,8 @@ def run_model(nclass_times,compile_flag,one_of_ten_fold_file_path,fildername,mod
 	codingMode = 0
 
 	train_all = pd.concat([train_pos_data, train_neg_data])
+	#print(train_all)
+	#print(len(train_all.as_matrix()[0]))
 	trainX1, trainY1 = convertRawToXY(train_all.as_matrix(), codingMode=codingMode)		
 
 	val_all = pd.concat([val_pos_data, val_neg_data])

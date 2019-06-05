@@ -125,7 +125,7 @@ def zyh_CNN(trainX, trainY,valX=None, valY=None, compiletimes = 0, forkinas=Fals
 		nb_epoch = 1000;  # set to a very big value since earlystop used
 		
 	if compiletimes == 0:
-		input = Input(shape=(input_row, input_col))
+
 		filter1 = 64
 		filtersize1 = 2
 		dropout1 = 0.25
