@@ -31,7 +31,8 @@ def get_data(data_number,file_path):
 	# '1MQD_A':[0,0,0,1,O,O,O,O,0....]
 
 	training_data = file_path + "train.pickle"
-	val_data = file_path + "val.pickle"
+	#val_data = file_path + "val.pickle"
+	val_data = file_path + "seq_from_pdb_all_no_3232.pickle"
 
 	#['5WC5_B', '2PX8_B', '4PXK_A'....]
 	################################ open file and load pickle ################################

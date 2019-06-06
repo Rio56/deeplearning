@@ -1,5 +1,6 @@
 
 from DTP_get_data import get_data,prepare_data
+import os
 
 file_path = ""
 data_number = 1
@@ -8,14 +9,28 @@ sequence_dic, lable_dic, train_data_id, val_data_id,data_number= get_data(data_n
 
 #print(sequence_dic, lable_dic, train_data_id, val_data_id,data_number)
 
-#print(sequence_dic)
+print(len(sequence_dic))
+print(len(val_data_id))
+val_data_id_set = set(val_data_id)
+#print(val_data_id_set)
+#print(len(val_data_id_set))
+counter = 0
 
-for item in val_data_id:
-    item = item.rsplit()
-    print(item)
-    seq = sequence_dic[item[0]]
-    print(seq)
-    file = open(""+ str(item[0]) + ".fasta","w")
-    file.write(">" + str(item[0])  + "\n")
+for key in sequence_dic:
+    counter = counter + 1
+    ID = key
+    #print(counter)
+    seq = sequence_dic[ID]
+    #print(seq)
+    
+    if os.path.exists(".\\3232_lonly_fasta\\"+ str(ID) + ".fasta"):
+        print(ID)
+        
+    file = open(".\\3232_lonly_fasta\\"+ str(ID) + ".fasta","w")
+    file.write(">" + str(ID)  + "\n")
     file.write(str(seq))
     file.close()
+    
+    
+    
+    
