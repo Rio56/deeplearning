@@ -16,19 +16,22 @@ val_data_id_set = set(val_data_id)
 #print(len(val_data_id_set))
 counter = 0
 
+#print(sequence_dic["5E7C_A"])
+#print(sequence_dic["5E7C_a"])
+
+
 for key in sequence_dic:
-    counter = counter + 1
-    ID = key
-    #print(counter)
-    seq = sequence_dic[ID]
+
+    seq = sequence_dic[key]
     #print(seq)
     
-    if os.path.exists(".\\3232_lonly_fasta\\"+ str(ID) + ".fasta"):
-        print(ID)
+    if os.path.exists(".\\3232_lonly_fasta\\"+ str(key) + ".fasta"):
+        print(key)
+        counter = counter + 1
+        #print(counter)
         
-    file = open(".\\3232_lonly_fasta\\"+ str(ID) + ".fasta","w")
-    file.write(">" + str(ID)  + "\n")
-    file.write(str(seq))
+    file = open(".\\3232_lonly_fasta\\"+ str(key) + ".fasta","w")
+    file.write(">" + str(key)  + "\n" + str(seq))
     file.close()
     
     

@@ -158,10 +158,10 @@ def using_one_of_ten_fold_crossing(one_of_ten_fold_file_path,x_fold_type,fildern
 			pass
 		if "pos" in dir and "train" in dir:
 			train_pos.append(dir)
-		if "neg" in dir and "val" in dir :
+		if "neg" in dir and "test" in dir :
 			val_neg.append(dir)
 			pass
-		if "pos" in dir and "val" in dir:
+		if "pos" in dir and "test" in dir:
 			val_pos.append(dir)	
 	print(path + train_neg[0])
 	print(path + train_pos[0])
@@ -290,9 +290,9 @@ if __name__ == "__main__":
 	
 	set_GPU(4)
 
-	#ten_fold_file_path = ".\\DTP_data\\ten_fold_data\\"
+	ten_fold_file_path = ".\\DTP_data\\ten_fold_data\\"
 	#ten_fold_file_path = "./DTP_data/ten_fold_data_0.3/"
-	ten_fold_file_path = "./DTP_data_no_rdc/10times_train_1_lenth31/"
+	#ten_fold_file_path = "./DTP_data_no_rdc/10times_train_1_lenth31/"
 	#ten_fold_file_path = "./DTP_data/ten_fold_data/"
 	
 	

@@ -1,0 +1,45 @@
+方法中分为4类
+
+1data_prepare类：用于处理是数据，将数据转化成可用格式保存。
+
+包含的方法：
+get_data(seq_dicts, lable_dicts, protein_id):return data_dicts{id:seq[],...}
+输入要处理的文件名字，有路径判断和文件选择的判断，读取蛋白质序列列表，蛋白质标签列表，蛋白质id列表，返回需要处理的字典。
+
+one_hot(data_dicts{id:seq,...}):  return data_dicts{id:[seq,1,2,...,20]}
+传入蛋白质字典，将蛋白质序列进行01编码，并将其传回。相当于把字典键值对的值进行修改，由蛋白质序列，修改成了蛋白质序列+01编码。
+（蛋白质序列可以直接转变编码，但其他特征是根据蛋白质序列算的，所以需要整个蛋白的信息，因此这里one_hot也针对蛋白质变换）
+
+pssm(data_dicts{id:seq,...}): return (data_dicts_onehot,{id:[seq,1,2,...,???]}
+对蛋白质添加pssm矩阵特征。（或单独提取）（后续步骤）
+
+divide_pos&neg(data_dicts_feture, lable_dicts, window, set = pos_set，tag = "pos"): retune {seque:filture[]}
+读取数据中lable标签，划分正负样本。正负样本去重,消除负样本中的正样本，对接标签和蛋白质数据。针对蛋白质序列不足位置增加补位处理。(先分正样本，后分负样本)
+
+divide_sets(data, tag = "tag",rate = "7:1:2"):
+随机打乱后将样本分成某比例的训练集、验证集、测试集。输入序列及其对应的特征，返回这3类数据。打乱后依次选取。对正负样本分开操作。共保存成6份文件。每次存3份。
+在这里分别标注正负样本。
+train_pos,val_pos,test_pos.
+train_neg,val_neg,test_neg.
+
+---------------------------------------
+load_data():读取过程中，区分正负样本。输入需要取的类别，返回可输入网络的文件。"train"-- train，val 选相同的数值随机抽取（上载数据前计算train的0.8）。“val” 选取val组别中的正负样本。
+注意，针对行和列的问题，注意，标签处理问题，目标是将数据转换成可放入网络的格式：list appand后data fram.
+
+2net类：构建不同的网络，传入参数可调
+
+3training类：调用网络，训练网络，存储网络
+
+4test类：测试已有网络，画图展示结果
+
+
+
+
+
+
+
+
+
+
+
+
