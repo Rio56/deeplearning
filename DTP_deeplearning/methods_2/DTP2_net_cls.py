@@ -43,17 +43,19 @@ class DTP_set_net(object):
     
     
     def zyh_CNN(self,trainX, trainY, valX=None, valY=None, compiletimes=0, forkinas=False, transferlayer=1, compilemodels=None,
-                earlystop=None, nb_epoch=5, batch_size=7124, fildername="fildername"):
+                earlystop=None, nb_epoch=500, batch_size=7124, fildername="fildername"):
         """
         :argument
         :return:
         """
     
+        #input_row = trainX.shape[1]
+        #input_col = trainX.shape[2]
+        
         input_row = trainX.shape[1]
         input_col = trainX.shape[2]
-        
-        #input_row = trainX.shape[2]
-        #input_col = trainX.shape[1]
+        print("trainX.shape")
+        print(trainX.shape)        
         print("input_row")
         print(input_row)
         print("input_col")
@@ -79,8 +81,8 @@ class DTP_set_net(object):
     
         if compiletimes == 0:
             input = Input(shape=(input_row, input_col))
-            filter1 = 200
-            filtersize1 = 64
+            filter1 = 64
+            filtersize1 = 2
             dropout1 = 0.25
             L1CNN = 0
             nb_classes = 2
@@ -158,17 +160,19 @@ class DTP_set_net(object):
         return cnn, accuracys
     
     def zyh_CNN_one_hot_flying(self,trainX, trainY, valX=None, valY=None, compiletimes=0, forkinas=False, transferlayer=1, compilemodels=None,
-                earlystop=None, nb_epoch=1000, batch_size=7124, fildername=None):
+                earlystop=None, nb_epoch=500, batch_size=4096, fildername=None):
         """
         :argument
         :return:
         """
-    
-        
+        print(type(trainX))
+
+        trainX.T
         input_row = trainX.shape[1]
         input_col = trainX.shape[2]
+
         #input_row = trainX.shape[2]
-        #input_col = trainX.shape[1]        
+        #input_col = trainX.shape[1]
         """
         print(trainY)
         input_row = trainX.shape[2]
@@ -226,20 +230,23 @@ class DTP_set_net(object):
             output = BatchNormalization()(output)
             out = Dense(nb_classes, init='glorot_normal', activation='softmax')(output)
     """
+
+            strides = 1
+            kernal_size_times = 1
             ########## Begin Oneofkey Network ##########
-            x = conv.Convolution1D(201, 2, init='glorot_normal', W_regularizer=regularizers.l1(L1CNN), border_mode="same", name='0')(input)
+            x = conv.Convolution1D(201, 2*kernal_size_times, strides = strides ,init='glorot_normal', W_regularizer=regularizers.l1(L1CNN), border_mode="same", name='0')(input)
             x = Dropout(0.4)(x)
             x = Activation('softsign')(x)
     
-            x = conv.Convolution1D(151, 3, init='glorot_normal', W_regularizer=regularizers.l2(L1CNN), border_mode="same", name='1')(x)
+            x = conv.Convolution1D(151, 3*kernal_size_times, strides = strides,init='glorot_normal', W_regularizer=regularizers.l2(L1CNN), border_mode="same", name='1')(x)
             x = Dropout(0.4)(x)
             x = Activation('softsign')(x)
     
-            x = conv.Convolution1D(151, 5, init='glorot_normal', W_regularizer=regularizers.l2(L1CNN), border_mode="same", name='2')(x)
+            x = conv.Convolution1D(151, 5*kernal_size_times,strides = strides , init='glorot_normal', W_regularizer=regularizers.l2(L1CNN), border_mode="same", name='2')(x)
             x = Dropout(0.4)(x)
             x = Activation('softsign')(x)
     
-            x = conv.Convolution1D(101, 7, init='glorot_normal', W_regularizer=regularizers.l2(L1CNN), border_mode="same", name='3')(x)
+            x = conv.Convolution1D(101, 7*kernal_size_times, strides = strides ,init='glorot_normal', W_regularizer=regularizers.l2(L1CNN), border_mode="same", name='3')(x)
             x = Activation('softsign')(x)
             x_reshape = core.Reshape((x._keras_shape[2], x._keras_shape[1]))(x)
             x = Dropout(0.4)(x)

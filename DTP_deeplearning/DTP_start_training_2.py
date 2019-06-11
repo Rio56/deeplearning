@@ -42,7 +42,7 @@ def start_training_2(system,fildername,feature_type):
     models, accuracys = Dp_net.zyh_CNN(train_x, train_y, val_x, val_y,compiletimes=0, forkinas=False, transferlayer=1, compilemodels=None,
                 earlystop=None, nb_epoch=10, fildername=fildername)
 
-    for item in range(0, 10):
+    for item in range(0, 1000):
         train_x, train_y = Data_prepare.load_data("train", feature_type,n_to_p_rate=1, random_rate=0.8, system=system)
         val_x, val_y = Data_prepare.load_data("val", feature_type,n_to_p_rate=1, random_rate=0.8, system=system)
         models, accuracys = Dp_net.zyh_CNN(train_x, train_y, val_x, val_y, compiletimes=item, transferlayer=1, forkinas=1, compilemodels=models,
