@@ -39,17 +39,27 @@ def start_training_2(system,fildername,feature_type):
 
     
     accuracys_final = {'train_loss1': [], 'train_acc1': [], 'val_loss2': [], 'val_acc2': []}
-    models, accuracys = Dp_net.zyh_CNN(train_x, train_y, val_x, val_y,compiletimes=0, forkinas=False, transferlayer=1, compilemodels=None,
+    models, accuracys = Dp_net.zyh_CNN_mnist(train_x, train_y, val_x, val_y,compiletimes=0, forkinas=False, transferlayer=1, compilemodels=None,
                 earlystop=None, nb_epoch=10, fildername=fildername)
 
-    for item in range(0, 10):
+    for item in range(0, 1000):
         train_x, train_y = Data_prepare.load_data("train", feature_type,n_to_p_rate=1, random_rate=0.8, system=system)
         val_x, val_y = Data_prepare.load_data("val", feature_type,n_to_p_rate=1, random_rate=0.8, system=system)
-        models, accuracys = Dp_net.zyh_CNN(train_x, train_y, val_x, val_y, compiletimes=item, transferlayer=1, forkinas=1, compilemodels=models,
+        models, accuracys = Dp_net.zyh_CNN_mnist(train_x, train_y, val_x, val_y, compiletimes=item, transferlayer=1, forkinas=1, compilemodels=models,
                                     fildername=fildername)
         
         eva_modle = DTP_evaluate_modle()
         
+
+
+        img_rows , img_cols = val_x.shape[1], val_x.shape[2]
+        print(img_rows , img_cols)
+
+        #"channels_first" assumes (channels, conv_dim1, conv_dim2, conv_dim3).
+        val_x = val_x.reshape(val_x.shape[0], img_rows, img_cols, 1)
+
+        #more reshaping
+        val_x = val_x.astype('float32')
         pre_score, pre, rec, SN, SP, f1, mcc, roc_auc = eva_modle.evaluate_model(models, val_x, val_y, item, "__", fildername)
         accuracys_final['train_loss1'].append(accuracys['train_loss1'])
         accuracys_final['train_acc1'].append(accuracys['train_acc1'])

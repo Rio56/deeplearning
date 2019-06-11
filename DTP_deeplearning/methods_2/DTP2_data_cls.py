@@ -339,23 +339,22 @@ class DTP_prepare_data(object):
 
         lable = [1 for i in range(pos_lenth)] + [0 for i in range(neg_lenth)]
         data_matrix = np.zeros((len(data), len(data[0]), len(data[0][0])))
-
+        data_matrix_right_form = np.zeros((len(data), len(data[0][0]), len(data[0])))
         sample_number = 0
         AA_number = 0
         for seq_item in data:
             for AA_item in seq_item:
+                #print(AA_item)
                 data_matrix[sample_number][AA_number] = np.array(AA_item)
                 AA_number += 1
+            data_matrix_right_form[sample_number] = data_matrix[sample_number].T
+            #change to the form that have meaning for cnn
             AA_number = 0
             sample_number += 1
-
-        print(data_matrix.shape)
-        print(len(lable))
-
+        
         lable = kutils.to_categorical(lable)
-        # lable = np.array(lable)
-        # print(data_matrix)
-        return data_matrix, lable
+        
+        return data_matrix_right_form, lable
 
     def change_AA_into_onehot(self):
         dict = {'C': 0, 'D': 1, 'S': 2, 'Q': 3, 'K': 4,
