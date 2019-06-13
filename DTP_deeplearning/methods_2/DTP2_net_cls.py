@@ -73,9 +73,9 @@ class DTP_set_net(object):
     
         if compiletimes == 0:
             input = Input(shape=(input_row, input_col))
-            filter1 = 128
-            filtersize1 = 93
-            strides = 15
+            filter1 = 64
+            filtersize1 = 2
+            strides = 1
             dropout1 = 0.25
             L1CNN = 0
             nb_classes = 2
