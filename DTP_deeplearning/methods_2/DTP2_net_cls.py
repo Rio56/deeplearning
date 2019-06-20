@@ -90,7 +90,10 @@ class DTP_set_net(object):
             dropout_dense1 = 0.298224
             dropout_dense2 = 0
             dropout_dense3 = 0
-            input = Input(shape=(input_row, input_col))
+            input = Input(shape=(input_row,input_col))
+            #print("shape = (None, input_col)")
+            #input = Input(shape=(None, input_col))
+
             x = conv.Conv1D(filter1, filtersize1,strides =strides , init='glorot_normal', W_regularizer=regularizers.l2(L1CNN),
                             border_mode="same")(input)
             x = Dropout(dropout1)(x)
@@ -215,7 +218,7 @@ class DTP_set_net(object):
     """
 
             strides = 1
-            kernal_size_times = 20
+            kernal_size_times = 1
             ########## Begin Oneofkey Network ##########
             x = conv.Convolution1D(201, 2*kernal_size_times, strides = strides ,init='glorot_normal', W_regularizer=regularizers.l1(L1CNN), border_mode="same", name='0')(input)
             x = Dropout(0.4)(x)

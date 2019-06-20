@@ -36,6 +36,15 @@ class DTP_prepare_data(object):
         protein_id = open(filepath + protein_id, 'rb')
         protein_id = pickle.load(protein_id)
 
+
+        """for item in protein_id:
+            print(len(lable_dicts[item]))
+            print(lable_dicts[item])
+            print(len(seq_dicts[item]))
+            print(seq_dicts[item])"""
+
+
+
         return seq_dicts, lable_dicts, protein_id
 
     def one_hot(self, data_dicts):
@@ -71,12 +80,14 @@ class DTP_prepare_data(object):
             seq_dicts_feature[item] = feature
             seq_onehot = []
             item_list = []
-        """for item in data_dicts:
+        #for item in data_dicts:
+            #pass
             #show the data
-            print(item)
-            print(data_dicts[item])
-            print(len(data_dicts[item][0]))
-            print(np.array(data_dicts[item]).shape)"""
+            #print(item)
+            #print(data_dicts[item])
+            #print(len(data_dicts[item]))
+            #print(len(seq_dicts_feature[item][1]))
+            #print(np.array(data_dicts[item]).shape)
         return seq_dicts_feature
 
     def physico_chemical(self, data_dicts):
@@ -188,9 +199,14 @@ class DTP_prepare_data(object):
             item = item.rstrip()
             if len(lable_dicts[item]) != len(seq_feature_dicts[item][0]) or len(lable_dicts[item]) != len(
                     seq_feature_dicts[item][1]):
+                print("len(lable_dicts[item]) != len(seq_feature_dicts[item][0]) or len(lable_dicts[item]) != len(seq_feature_dicts[item][1])")
                 print(item)
                 print(len(lable_dicts[item]))
-                print(len(seq_feature_dicts[item]))
+                print(lable_dicts[item])
+                print(len(seq_feature_dicts[item][0]))
+                print(seq_feature_dicts[item][0])
+                print(len(seq_feature_dicts[item][1]))
+                print(seq_feature_dicts[item][1])
                 # find defferent length item
             seq = ""
             feature = []
@@ -203,7 +219,7 @@ class DTP_prepare_data(object):
                     for ftr in seq_feature_dicts[item][1][start:end]:
                         feature.append(ftr)
                     if len(seq) != window:
-                        print(len(seq))
+                        #print("middle wrong")
                         counter = counter + 1
                     # if the window is in the seq.
                 elif position - hf_window < 0:
@@ -218,9 +234,10 @@ class DTP_prepare_data(object):
                     for ftr in seq_feature_dicts[item][1][0:end]:
                         feature.append(ftr)
                     if len(seq) != window:
-                        print(seq)
+                        #print("left_wrong")
+                        #print(seq)
+                        pass
                     # if the window is at the left side,we need add the "X" at first
-
                 elif position + hf_window >= len(lable_dicts[item]):
                     right_size = position + hf_window - len(lable_dicts[item]) + 1
                     start = position - hf_window
@@ -233,15 +250,22 @@ class DTP_prepare_data(object):
                     for num in range(right_size):
                         feature.append(make_up)
                     if len(seq) != window:
-                        print(seq)
+                        pass
+                        #print("right_wrong")
+                        #print(seq)
                     # if the window is at the right side,we need add the "X" at last
                 else:
                     print("!!!")
 
-                if len(seq) != window:
-                    print(seq)
                 # if str(lable_dicts[item][position]) == flag:
                 # if do not want to del the same seq_windows, we can use the upper one
+                if len(seq) != window:
+                    print(item)
+                    print(seq)
+                    print(lable_dicts[item])
+
+                    pass
+                    # print("right_wrong")
                 if str(lable_dicts[item][position]) == flag and seq not in set:
                     newset[seq] = feature
                 seq = ""
@@ -354,7 +378,7 @@ class DTP_prepare_data(object):
         
         lable = kutils.to_categorical(lable)
         
-        return data_matrix_right_form, lable
+        return data_matrix, lable
 
     def change_AA_into_onehot(self):
         dict = {'C': 0, 'D': 1, 'S': 2, 'Q': 3, 'K': 4,
