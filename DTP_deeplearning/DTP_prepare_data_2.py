@@ -13,10 +13,12 @@ import pickle
 
 
 def main(Dp):
-    seq_dicts = "seq_dicts.pickle"
-    lable_dicts = "lable_dicts.pickle"
-    protein_id_all = "seq_allcutoff.pickle"
+    seq_dicts = "seq_dicts.pkl"
+    lable_dicts = "lable_dicts.pkl"
+    protein_id_all = "all_id_list.pkl"
     protein_id_03 = "seq_3cutoff.pickle"
+
+
 
     window = 31
     starttime = datetime.datetime.now()
@@ -24,6 +26,7 @@ def main(Dp):
     ########## Get Positive Samples ##########
     pos_seq_dicts, pos_lable_dicts, pos_protein_id = Dp.get_data(protein_id_all, seq_dicts, lable_dicts, "windows")
     # load data for pos, that is :protein_id_all
+
     pos_seq_one_hot_dicts = Dp.one_hot(pos_seq_dicts)
     pos_seq_phy_che_dicts = Dp.physico_chemical(pos_seq_dicts)
     # change data into one hot key \ physical_chemical\ pssm
@@ -44,7 +47,7 @@ def main(Dp):
     print("positive_done = " + str(endtime - starttime))
 
     ########## Get Negtive Samples ##########
-    neg_seq_dicts, neg_lable_dicts, neg_protein_id = Dp.get_data(protein_id_03, seq_dicts, lable_dicts, "windows")
+    neg_seq_dicts, neg_lable_dicts, neg_protein_id = Dp.get_data(protein_id_all, seq_dicts, lable_dicts, "windows")
     # load data for pos, that is :protein_id_03 use the 0.3 cd hit cut off to eliminate the redundancy
     neg_seq_one_hot_dicts = Dp.one_hot(neg_seq_dicts)
     neg_seq_physico_chemical_dicts = Dp.physico_chemical(neg_seq_dicts)
@@ -57,7 +60,6 @@ def main(Dp):
     neg_phy_che_set = Dp.divide_pos_neg(neg_seq_physico_chemical_dicts, neg_lable_dicts, neg_protein_id, window, set={},
                                         tag="neg_phy_che")
     # find the negative samples
-
     Dp.divide_sets(neg_one_hot_set, tag="neg_one_hot", train=8, val=1, test=1, system="windows")
     Dp.divide_sets(neg_phy_che_set, tag="neg_phy_che", train=8, val=1, test=1, system="windows")
     endtime = datetime.datetime.now()
