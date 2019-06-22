@@ -1,0 +1,1 @@
+PDB得到的site点是使用gongDemo中PDBParsersongjz运行得到的
